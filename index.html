@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app" class="ui-main-body"> hello {{ message }} 
+        <!-- link 
+            you can do v-bind or :href
+        -->
+        <a :href="link">google</a>
+        
+        <!-- input -->
+        <input type="checkbox" v-model="flash">
+        <div v-if="flash" :style="{'color:red;': flash,'color:green;': !flash}">{{ flashMessage }}</div>
+
+        <!-- if else  -->
+        <div id="app-success" class="ui-main-body" v-if="success === 'success'">
+            <p>votre enregistrement à fonctionné</p>
+            <a href="#" v-on:click="close">close</a>
+        </div>
+        <div v-else-if="success === 'error'">
+            <p>something bad happening</p>
+            <a href="#" @click="close">close</a>
+        </div> 
+        <!-- <div v-else>
+            <p>it doesn't work sorry</p>
+        </div> -->
+
+        <div id="app-success" class="ui-main-body" v-show="message">
+                <p>votre variable message est bien définie</p>
+        </div>
+
+        <!-- 'for' loop for li-->
+        <div>
+            <ul>
+                <li v-for="person in persons">{{ person }}</li>
+            </ul>
+        </div>
+
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
