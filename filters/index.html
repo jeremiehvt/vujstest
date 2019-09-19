@@ -9,28 +9,7 @@
 </head>
 <body>
     <div id="app" class="ui-main-body">
-        <!-- directives link -->
-        <a href="#" @click.prevent="demo">link0</a><br>
-        
-        <!-- stop proagation buble -->
-        <p @click="demo2">
-            <a href="#" @click.self="demo">link1</a><br>
-            <a href="#" @click.capture="demo">link2</a><br>
-            <a href="#" @click.prevent.stop="demo">link3</a>
-        </p>
-
-        <a href="#" @click.stop="demo2">link4</a><br>
-
-        <!-- <input type="text" v-model.lazy="message3"> -->
-        <!-- <input type="text" v-model.number.lazy="message3"> -->
-        <!-- <input type="text" v-model.trim.lazy="message3"> -->
-        
-        <!-- on event and filters -->
-        <input type="text" @keyup.space="demo">
-        {{ message3 }} <br>
-
-        <input type="text" v-salut.a.b.c="message"><br>
-        <input type="text" v-model="message">
+        {{ message | capitalize('aze', 'aze') }}
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
