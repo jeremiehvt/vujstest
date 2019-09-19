@@ -48,19 +48,16 @@
         </div>
 
         <div class="ui message">
-            <!-- <input type="checkbox" v-model="successTwo">
-            <p class="message" :class="cls">hello</p> -->
-
-            <!--  -->
+            <input type="checkbox" v-model="successTwo">
+            <p class="message" :class="cls">hello</p>
+            
+            <!-- computed chapter -->
             <div>
                 prenom {{ firstName }} <br> 
                 nom {{ lastName }} <br> 
-                nom complet {{ fullname }} <br>
-                <input type="text" v-model="fullname">
+                nom complet : <input type="text" v-model="fullname">
             </div>
-            
         </div>
-
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>

@@ -27,9 +27,9 @@ let vm = new Vue({
     },
 
     computed: {
-        // cls: function () {
-        //     return this.successTwo === true ? 'success' : 'error'
-        // },
+        cls: function () {
+            return this.successTwo === true ? 'success' : 'error'
+        },
         fullname: {
             get: function () {
                 return this.firstName +'  '+ this.lastName
@@ -41,5 +41,12 @@ let vm = new Vue({
             }
         }
     },
+
+    watch: {
+        fullname: function (value) {
+            console.log('watch', value)
+        }
+    },  
+    
 });
 
