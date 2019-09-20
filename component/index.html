@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/test.css" />
+  </head>
+  <body>
+    <div id="app">
+      <form-user v-model="user"> </form-user>
+      <pre>{{ user }}</pre>
+      <mon-message
+        class="ui-main-body"
+        type=""
+        :message="message"
+        header="attention"
+        v-if="alert"
+        @close="hideAlert"
+      ></mon-message>
+      <button @click="showAlert">alerter</button>
+
+      <counter></counter>
+      <counter :start="3"></counter>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

@@ -3,7 +3,7 @@ salut = function (el, binding) {
         console.log(binding);
 
         el.value = binding.value;
-    }
+    };
 
 let vm = new Vue({
     el: '#app',
@@ -15,7 +15,6 @@ let vm = new Vue({
         message2: 'bye',
         message3: 'good',
     },
-
     methods: {
         demo: function (e) {
             console.log(this.message)
@@ -24,5 +23,4 @@ let vm = new Vue({
             console.log(this.message2)
         }
     }
- 
 });
