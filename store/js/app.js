@@ -14,22 +14,38 @@ class NotificationsStore {
   }
 }
 
-let Notifications_store = new NotificationsStore();
+let notifications_store = new NotificationsStore();
 
 let counter = {
   data: function() {
     return {
-      state: Notifications_store.state
+      state: notifications_store.state
     };
   },
-  template: `<div> {{ notifs_count }} </div>`
+  computed: {
+    count: function() {
+      return this.state.count;
+    }
+  },
+  methods: {
+    increment: function() {
+      notifications_store.increment();
+    }
+  },
+  template: `<button @click="increment"> {{ count }} </button>`
 };
 
 let notifications = {
+  components: { counter },
+  methods: {
+    addNotif: function() {
+      notifications_store.increment();
+    }
+  },
   template: `
     <div>
         <counter></counter>
-        <button @click="addNotif"></button>
+        <button @click="addNotif">increment</button>
     </div>
   `
 };

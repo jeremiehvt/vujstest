@@ -9,7 +9,9 @@
   </head>
   <body>
     <div id="app">
-      <form-user v-model="user"> </form-user>
+      <form-user v-model="user">
+        <div slot="footer">je suis un footer</div>
+      </form-user>
       <pre>{{ user }}</pre>
       <mon-message
         class="ui-main-body"

@@ -9,7 +9,6 @@ let formUser = {
   },
   methods: {
     save: function() {
-      let test = { ...this.user };
       this.$emit("input", { ...this.user });
     }
   },
@@ -23,7 +22,8 @@ let formUser = {
             <label for="">Nom</label>
             <input type="text" v-model="user.lastname">
         </div>
-        <button type="submit">envoyer</button>
+        <button type="submit">envoyer</button><br>
+        <slot name="footer"></slot>
     </form>
    `
 };
