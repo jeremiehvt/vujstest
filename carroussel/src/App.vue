@@ -12,34 +12,32 @@
     </v-app-bar>
 
     <v-content>
-      <HelloWorld />
+      <carroussel>
+        <slide>
+          salut
+          <img src="https://picsum.photos/200/300" alt="photo" />
+        </slide>
+        <slide>
+          aurevoir
+          <img src="https://picsum.photos/200/300" alt="photo" />
+        </slide>
+      </carroussel>
     </v-content>
   </v-app>
 </template>
 
 <script>
-
-// src/plugins/vuetify.js
-
-import Vue from 'vue'
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
-
-Vue.use(Vuetify)
-
-export default new Vuetify({icons: {
-    iconfont: 'mdi', // default - only for display purposes
-  },})
-
-import HelloWorld from './components/HelloWorld';
+import Carroussel from "./components/Carroussel.vue";
+import Slide from "./components/Slide.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld,
+    Carroussel,
+    Slide
   },
   data: () => ({
     //
-  }),
+  })
 };
 </script>
