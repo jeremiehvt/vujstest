@@ -26,24 +26,35 @@
               v-for="(todo,index) in filteredTodos"
               :key="index"
               class="todo-list__item"
-              :class="{completed: todo.completed}"
+              :class="{completed: todo.completed, editing: todo === editing}"
             >
               <!-- <b-container class="todo-list__item">
               <b-row class="view justify-content-center todo-list__item" align-v="center">-->
               <b-form-checkbox v-model="todo.completed"></b-form-checkbox>
-              <label class="my-0 mx-2">{{todo.name}}</label>
+              <label class="my-0 mx-2" @dblclick="editTodo(todo)">{{todo.name}}</label>
               <b-button
-                class="input-small"
+                class="clear-completed input-small"
                 size="sm"
                 variant="danger"
-                @click.prevent="deleteTodo(todo)"
+                @click.prevent="deleteCompleted"
+                v-show="doneTodo"
               >supprimer la tache</b-button>
               <!-- </b-row>
               </b-container>-->
+              <input
+                type="text"
+                class="edit"
+                v-model="todo.name"
+                @keyup.enter="doneEdit"
+                @blur="doneEdit"
+                @keyup.escape="cancelEdit(todo)"
+                v-show="todo === editing"
+                v-focus="todo === editing"
+              />
             </b-list-group-item>
           </b-list-group>
         </div>
-        <footer class="todo-count">
+        <footer class="todo-count" v-show="hasTodos">
           <strong>reste à faire : {{remaining}}</strong>
           <b-list-group>
             <b-list-group-item
@@ -62,25 +73,48 @@
               @click.prevent="filter='done'"
             >toutes les taches finies</b-list-group-item>
           </b-list-group>
+          <b-button
+            variant="danger"
+            class="mt-3"
+            size="sm"
+            @click.prevent="deleteCompleted"
+            v-show="getTodo > 0"
+          >supprimer les taches complétées</b-button>
         </footer>
       </b-col>
     </b-row>
   </b-container>
 </template>
 <script>
+import Vue from "vue";
 export default {
+  props: {
+    value: {
+      type: Array,
+      default() {
+        return [];
+      }
+    }
+  },
   data() {
     return {
-      title: "Todo",
+      title: "Todolist",
       todos: [
         {
-          name: "test",
+          name: null,
           completed: false
         }
       ],
       newTodo: "",
-      filter: "all"
+      filter: "all",
+      editing: null,
+      oldTodo: null
     };
+  },
+  watch: {
+    value(value) {
+      this.todos = value;
+    }
   },
   methods: {
     addTodo() {
@@ -96,11 +130,30 @@ export default {
     },
     deleteAllTodo() {
       this.todos = [];
+      this.$emit("input", this.todos);
+    },
+    deleteCompleted() {
+      this.todos = this.todos.filter(todo => !todo.completed);
+      this.$emit("input", this.todos);
+    },
+    editTodo(todo) {
+      this.editing = todo;
+      this.oldTodo = todo.name;
+    },
+    doneEdit() {
+      this.editing = null;
+    },
+    cancelEdit(todo) {
+      this.editing.name = this.oldTodo;
+      this.doneEdit();
     }
   },
   computed: {
     remaining() {
       return this.todos.filter(todo => !todo.completed).length;
+    },
+    doneTodo() {
+      return this.todos.filter(todo => todo.completed).length;
     },
     filteredTodos() {
       if (this.filter === "todo") {
@@ -120,6 +173,18 @@ export default {
       set(value) {
         this.todos.forEach(todo => {
           todo.completed = value;
+        });
+      }
+    },
+    hasTodos() {
+      return this.todos.length > 0;
+    }
+  },
+  directives: {
+    focus(el, value) {
+      if (value) {
+        Vue.nextTick(_ => {
+          el.focus();
         });
       }
     }

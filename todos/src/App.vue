@@ -2,7 +2,12 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <todo></todo>
+    {{todos}}
+    <todo class="mt-4" v-model="todos"></todo>
+    <todo class="mt-4" v-model="todos"></todo>
+    <todo class="mt-4" v-model="todos"></todo>
+
+    <button @click="addTodo">ajouter une todo</button>
   </div>
 </template>
 
@@ -18,8 +23,26 @@ import Todo from "./components/Todo.vue";
 
 export default {
   name: "app",
+  data() {
+    return {
+      todos: [
+        {
+          name: "demo",
+          completed: true
+        }
+      ]
+    };
+  },
   components: {
     Todo
+  },
+  methods: {
+    addTodo() {
+      this.todos.push({
+        name: "me",
+        completed: false
+      });
+    }
   }
 };
 </script>
