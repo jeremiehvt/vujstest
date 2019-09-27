@@ -12,16 +12,20 @@
     </v-app-bar>
 
     <v-content>
-      <carroussel>
-        <slide>
-          salut
-          <img src="https://picsum.photos/200/300" alt="photo" />
-        </slide>
-        <slide>
-          aurevoir
-          <img src="https://picsum.photos/200/300" alt="photo" />
-        </slide>
-      </carroussel>
+      <v-container>
+        <v-row justify="center">
+          <v-col cols="4">
+            <carroussel>
+              <slide>
+                <img src="https://picsum.photos/200/300" alt="photo" />
+              </slide>
+              <slide>
+                <img src="https://picsum.photos/200/400" alt="photo" />
+              </slide>
+            </carroussel>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-content>
   </v-app>
 </template>

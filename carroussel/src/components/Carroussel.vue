@@ -1,8 +1,8 @@
 <template>
   <div>
     <slot></slot>
-    <button class="carroussel__nav carroussel__next" @click.prevent="next">suivant</button>
-    <button class="carroussel__nav carroussel__prev" @click.prevent="prev">précédent</button>
+    <v-btn class="carroussel__nav carroussel__next" @click.prevent="next">suivant</v-btn>
+    <v-btn class="carroussel__nav carroussel__prev" @click.prevent="prev">précédent</v-btn>
   </div>
 </template>
 <script>
@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     slidesCount() {
-      return this.slides.length;
+      return this.slides.length - 2;
     }
   }
 };
