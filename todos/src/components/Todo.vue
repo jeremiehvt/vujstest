@@ -87,7 +87,11 @@
 </template>
 <script>
 import Vue from "vue";
+import Store from "./TodoStore.js";
+import Vuex from "vuex";
+global.v = Vuex;
 export default {
+  store: Store,
   props: {
     value: {
       type: Array,
@@ -99,12 +103,12 @@ export default {
   data() {
     return {
       title: "Todolist",
-      todos: [
+      /* todos: [
         {
           name: null,
           completed: false
         }
-      ],
+      ], */
       newTodo: "",
       filter: "all",
       editing: null,
@@ -117,13 +121,19 @@ export default {
     }
   },
   methods: {
+    ...Vuex.mapActions({ addTodoStore: "addTodo", deleteTodo: "deleteTodo" }),
     addTodo() {
-      this.todos.push({
-        name: this.newTodo,
-        completed: false
-      });
+      this.addTodoStore(this.newTodo);
       this.newTodo = "";
     },
+
+    // addTodo() {
+    //   this.todos.push({
+    //     name: this.newTodo,
+    //     completed: false
+    //   });
+    //   this.newTodo = "";
+    // },
     deleteTodo(todo) {
       console.log(this.todos);
       this.todos = this.todos.filter(i => i != todo);
@@ -149,22 +159,29 @@ export default {
     }
   },
   computed: {
+    ...Vuex.mapGetters([
+      "todos",
+      "remainingTodosCount",
+      "completedTodosCount",
+      "completedTodos",
+      "remainingTodos"
+    ]),
     remaining() {
-      return this.todos.filter(todo => !todo.completed).length;
+      // return this.todos.filter(todo => !todo.completed).length;
     },
     doneTodo() {
       return this.todos.filter(todo => todo.completed).length;
     },
     filteredTodos() {
       if (this.filter === "todo") {
-        return this.todos.filter(todo => !todo.completed);
+        return this.remainingTodos;
       } else if (this.filter === "done") {
-        return this.todos.filter(todo => todo.completed);
+        return this.completedTodos;
       }
-      return this.todos;
+      // return this.todos;
     },
     getTodo() {
-      return this.todos.length;
+      // return this.todos.length;
     },
     allDone: {
       get() {
@@ -177,7 +194,7 @@ export default {
       }
     },
     hasTodos() {
-      return this.todos.length > 0;
+      // return this.todos.length > 0;
     }
   },
   directives: {

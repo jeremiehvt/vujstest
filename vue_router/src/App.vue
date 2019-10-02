@@ -1,15 +1,16 @@
 <template>
   <v-app>
     <v-content>
-      <!-- <div class="sidebar">
+      <div class="sidebar">
         <h1>sidebar</h1>
         <router-view name="sidebar"></router-view>
-      </div>-->
+      </div>
       <div class="menu">
         <router-link :to="{name: 'root'}">accueil</router-link>
         <br />
+        <router-link :to="{name: 'post_un', params: {id:1}}">post 1</router-link>
         <br />
-        <router-link :to="{name: 'post_un', params: {id:1}}">article1</router-link>
+        <router-link :to="{name: 'article', params: {id:1}}">article 1</router-link>
       </div>
       <div class="main">
         <h1>MAin</h1>

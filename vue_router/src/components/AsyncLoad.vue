@@ -1,5 +1,5 @@
 <template>
-  <div>Article {{$route.params.id}}</div>
+  <div>chargement async</div>
 </template>
 <script>
 export default {};
