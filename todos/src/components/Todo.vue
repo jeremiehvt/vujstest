@@ -121,7 +121,10 @@ export default {
     }
   },
   methods: {
-    ...Vuex.mapActions({ addTodoStore: "addTodo", deleteTodo: "deleteTodo" }),
+    ...Vuex.mapActions({
+      addTodoStore: "addTodo",
+      deleteTodo: "deleteTodo"
+    }),
     addTodo() {
       this.addTodoStore(this.newTodo);
       this.newTodo = "";
