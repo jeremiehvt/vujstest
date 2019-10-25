@@ -1,29 +1,40 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import meteoData from "../resources";
 
 Vue.use(Vuex);
 
 const state = {
   meteo: {
     city: "rennes",
-    data: {}
+    data: ""
   }
 };
+
 const mutations = {
-  ADD_METEO: (state, city, data) => {
-    state.meteo.city = city;
-    state.meteo.data = data;
+  ADD_METEO: (state, meteo) => {
+    state.meteo.city = meteo.city;
+    state.meteo.data = meteo.data;
   }
 };
+
 const getters = {
   getMeteo: state => {
-    return state.meteo;
+    console.log(state.meteo);
+    return state.meteo.city;
   }
 };
+
 const actions = {
-  changeMeteo: (store, city, data) => {
-    console.log(city, data);
-    store.commit("ADD_METEO", city, data);
+  changeMeteo: (store, meteo) => {
+    if (meteo != "") {
+      console.log(meteo);
+      meteoData.meteo = {
+        city: meteo.city,
+        country_code: "fr"
+      };
+      store.commit("ADD_METEO", meteoData.meteo);
+    }
   }
 };
 

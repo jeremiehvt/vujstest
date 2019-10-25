@@ -1,6 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
-import vueResource from "./resources.js";
+import vueResource from "vue-resource";
 import vuetify from "./plugins/vuetify";
 import router from "./router.js";
 import store from "./store/store.js";

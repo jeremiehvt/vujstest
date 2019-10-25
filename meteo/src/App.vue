@@ -16,9 +16,6 @@ import Vue from "vue";
 import Vuex from "vuex";
 export default {
   name: "App",
-  mounted() {
-    console.log(this.$store);
-  }
 };
 </script>
 <style lang="css">

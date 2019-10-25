@@ -7,7 +7,7 @@
             label="saisissez le nom de votre ville"
             placeholder="La meteo de votre ville"
             v-model="city"
-            @blur="changeMeteoStore(city)"
+            @blur="changeMeteoStore({city, meteodata})"
           ></v-text-field>
           {{city}}
         </v-col>
@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       city: "",
-      data: {}
+      meteodata: "test"
     };
   },
   methods: {
