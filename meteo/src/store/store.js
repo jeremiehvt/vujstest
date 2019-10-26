@@ -20,20 +20,18 @@ const mutations = {
 
 const getters = {
   getMeteo: state => {
-    console.log(state.meteo);
-    return state.meteo.city;
+    return state.meteo;
   }
 };
 
 const actions = {
   changeMeteo: (store, meteo) => {
     if (meteo != "") {
-      console.log(meteo);
       meteoData.meteo = {
         city: meteo.city,
         country_code: "fr"
       };
-      store.commit("ADD_METEO", meteoData.meteo);
+      store.commit("ADD_METEO", { city: meteo.city, data: meteoData.meteo });
     }
   }
 };
