@@ -25,6 +25,7 @@ export default {
     };
   },
   mounted() {
+    //todo add list functionnality meteo to the store
     //set actions
     this.meteo = this.$store.state.meteo;
     this.$store.dispatch("changeMeteo", this.meteo);
