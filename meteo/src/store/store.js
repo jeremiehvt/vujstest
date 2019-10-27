@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 const state = {
   meteo: {
-    city: "rennes",
+    city: "Rennes",
     data: ""
   }
 };

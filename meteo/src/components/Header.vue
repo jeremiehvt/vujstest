@@ -9,7 +9,7 @@
             v-model="meteo.city"
             @blur="changeMeteoStore(meteo)"
           ></v-text-field>
-          {{meteo}}
+          {{meteo.city}}
         </v-col>
       </v-row>
     </v-container>
@@ -17,7 +17,8 @@
 </template>
 <script>
 import { mapActions } from "vuex";
-
+import resources from "../resources";
+import formatter from "../formatter";
 export default {
   data() {
     return {
@@ -27,9 +28,21 @@ export default {
   mounted() {
     //todo add list functionnality meteo to the store
     //set actions
-    this.meteo = this.$store.state.meteo;
-    this.$store.dispatch("changeMeteo", this.meteo);
-    // console.log(this.meteo);
+    this.meteo.city = this.$store.getters.getMeteo.city;
+
+    resources.meteo = {
+      city: this.meteo.city,
+      country_code: "fr"
+    };
+
+    this.meteo.data = resources.meteo;
+    this.$store.commit("ADD_METEO", this.meteo);
+    let data = this.meteo.data;
+    async function f0(d) {
+      console.log(await d);
+    }
+    f0(data);
+    formatter.data = this.meteo.data;
   },
   methods: {
     ...mapActions({ changeMeteoStore: "changeMeteo" }),
